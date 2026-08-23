@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1120"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="300" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#F8FAFC">Usman Tariq</text>
+  <text x="80" y="360" font-family="Georgia, serif" font-size="34" fill="url(#txt)">Full Stack · Flutter · UI/UX · Growth</text>
+  <text x="80" y="410" font-family="Arial, sans-serif" font-size="22" fill="#94A3B8">I build the product, then I build its audience.</text>
+</svg>
