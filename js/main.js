@@ -10,7 +10,6 @@
 
   /* ---------- CONFIG ---------- */
   const CONFIG = {
-    githubUsername: 'iusmantariq', // change to your real GitHub username
     // Set one of these to make the contact form live (see README for setup):
     formspreeEndpoint: '', // e.g. 'https://formspree.io/f/xxxxxxx'
     emailjs: { serviceId: '', templateId: '', publicKey: '' }
@@ -210,47 +209,6 @@
   }
 
   /* =========================================================
-     GitHub API integration
-     ========================================================= */
-  const loadGithubStats = async () => {
-    const { githubUsername } = CONFIG;
-    try {
-      const [userRes, reposRes] = await Promise.all([
-        fetch(`https://api.github.com/users/${githubUsername}`),
-        fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`)
-      ]);
-      if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API request failed');
-      const user = await userRes.json();
-      const repos = await reposRes.json();
-
-      $('#ghAvatar').src = user.avatar_url;
-      $('#ghName').textContent = `@${user.login}`;
-      $('#ghBio').textContent = user.bio || `${user.public_repos} public repositories on GitHub.`;
-      $('#ghRepos').textContent = user.public_repos ?? '—';
-      $('#ghFollowers').textContent = user.followers ?? '—';
-      $('#ghFollowing').textContent = user.following ?? '—';
-
-      const totalStars = Array.isArray(repos) ? repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0) : 0;
-      $('#ghStars').textContent = totalStars;
-
-      const repoList = $('#ghRepoList');
-      if (repoList && Array.isArray(repos)) {
-        repoList.innerHTML = repos.slice(0, 6).map(r => `
-          <a class="gh-repo" href="${r.html_url}" target="_blank" rel="noopener">
-            <strong>${r.name}</strong>
-            <p>${r.description ? r.description.slice(0, 70) : 'No description'} · ★ ${r.stargazers_count}</p>
-          </a>
-        `).join('');
-      }
-    } catch (err) {
-      const bio = $('#ghBio');
-      if (bio) bio.textContent = `Live stats unavailable right now — check github.com/${githubUsername} directly.`;
-      console.warn('GitHub stats failed to load:', err);
-    }
-  };
-  loadGithubStats();
-
-  /* =========================================================
      Testimonials slider
      ========================================================= */
   const track = $('#testimonialTrack');
@@ -379,7 +337,6 @@
     { label: 'Services', target: '#services' },
     { label: 'Portfolio', target: '#portfolio' },
     { label: 'Experience', target: '#experience' },
-    { label: 'GitHub Stats', target: '#github' },
     { label: 'Contact', target: '#contact' },
     { label: 'Toggle theme', action: () => themeToggle?.click() }
   ];
