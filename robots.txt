@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://usmantariq.github.io/sitemap.xml
+Sitemap: https://iusmantariq.github.io/sitemap.xml

@@ -293,7 +293,9 @@ p{margin:0;}
 /* =========================================================
    About
    ========================================================= */
-.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;align-items:start;}
+.about-grid{display:grid;grid-template-columns:0.85fr 1.3fr 1fr;gap:44px;align-items:start;}
+.about-photo{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);position:sticky;top:110px;}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .lede{font-family:var(--font-display);font-size:1.4rem;font-weight:500;margin-bottom:20px;}
 .about-copy p{margin-bottom:18px;color:var(--muted);}
 .about-copy .lede{color:var(--text);}
@@ -391,6 +393,15 @@ p{margin:0;}
 .project-links{display:flex;gap:14px;font-size:0.86rem;}
 .project-links a{color:var(--secondary);font-weight:600;}
 .project-links a:hover{color:var(--accent);}
+
+.portfolio-empty{
+  max-width:520px;margin:0 auto;text-align:center;
+  padding:56px 32px;border-radius:var(--radius-lg);
+  background:var(--surface);border:1px dashed var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.portfolio-empty-icon{font-size:1.6rem;color:var(--accent);}
+.portfolio-empty p{color:var(--muted);font-size:1rem;}
 
 /* =========================================================
    Experience timeline
@@ -533,8 +544,14 @@ p{margin:0;}
   .gh-repos{grid-template-columns:repeat(2,1fr);}
 }
 
+@media (max-width:1080px){
+  .about-grid{grid-template-columns:1fr 1fr;}
+  .about-photo{grid-row:1 / 3;position:static;}
+}
+
 @media (max-width:900px){
   .about-grid,.contact-grid{grid-template-columns:1fr;}
+  .about-photo{grid-row:auto;max-width:320px;margin:0 auto;}
   .nav-links{display:none;}
   .hide-mobile{display:none;}
   .hamburger{display:flex;}

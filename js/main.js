@@ -10,57 +10,14 @@
 
   /* ---------- CONFIG ---------- */
   const CONFIG = {
-    githubUsername: 'usmantariq', // change to your real GitHub username
+    githubUsername: 'iusmantariq', // change to your real GitHub username
     // Set one of these to make the contact form live (see README for setup):
     formspreeEndpoint: '', // e.g. 'https://formspree.io/f/xxxxxxx'
     emailjs: { serviceId: '', templateId: '', publicKey: '' }
   };
 
-  /* ---------- PROJECT DATA (edit / extend freely) ---------- */
-  const PROJECTS = [
-    {
-      title: 'Storefront Redesign',
-      category: 'web',
-      tags: ['React', 'Next.js', 'Tailwind'],
-      desc: 'E-commerce front-end rebuild focused on load speed and checkout conversion.',
-      github: '#', demo: '#'
-    },
-    {
-      title: 'Field Service App',
-      category: 'mobile',
-      tags: ['Flutter', 'Firebase'],
-      desc: 'Cross-platform job-scheduling app for a small field service team.',
-      github: '#', demo: '#'
-    },
-    {
-      title: 'SaaS Dashboard Concept',
-      category: 'uiux',
-      tags: ['Figma', 'Design System'],
-      desc: 'Wireframe-to-prototype pass on an analytics dashboard.',
-      github: '#', demo: '#'
-    },
-    {
-      title: 'Local Business SEO Sprint',
-      category: 'marketing',
-      tags: ['SEO', 'Google Ads'],
-      desc: 'Search visibility and paid campaign structure for a local service business.',
-      github: '#', demo: '#'
-    },
-    {
-      title: 'Booking Platform API',
-      category: 'web',
-      tags: ['Node.js', 'Express', 'REST'],
-      desc: 'Backend and admin panel for an appointment booking product.',
-      github: '#', demo: '#'
-    },
-    {
-      title: 'Fitness Tracker App',
-      category: 'mobile',
-      tags: ['Flutter', 'Dart'],
-      desc: 'Cross-platform workout logger with offline-first data sync.',
-      github: '#', demo: '#'
-    }
-  ];
+  /* ---------- (Project data removed — Portfolio section shows a "coming soon" state.
+     Re-add a PROJECTS array + the filter/render logic here when you have real work to show.) ---------- */
 
   /* =========================================================
      Loader
@@ -253,41 +210,6 @@
   }
 
   /* =========================================================
-     Portfolio: render + filter
-     ========================================================= */
-  const grid = $('#projectGrid');
-  const categoryLabel = { web: 'Web Development', mobile: 'Mobile App', uiux: 'UI/UX', marketing: 'Marketing' };
-
-  const renderProjects = (filter = 'all') => {
-    if (!grid) return;
-    const items = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.category === filter);
-    grid.innerHTML = items.map(p => `
-      <div class="project-card reveal in-view">
-        <div class="project-thumb"><span>${p.title.split(' ').map(w => w[0]).join('').slice(0,3)}</span></div>
-        <div class="project-body">
-          <span class="eyebrow" style="margin-bottom:6px;display:block;">${categoryLabel[p.category]}</span>
-          <h3>${p.title}</h3>
-          <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
-          <p>${p.desc}</p>
-          <div class="project-links">
-            <a href="${p.github}" target="_blank" rel="noopener">GitHub →</a>
-            <a href="${p.demo}" target="_blank" rel="noopener">Live Demo →</a>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  };
-  renderProjects();
-
-  $$('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      $$('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderProjects(btn.dataset.filter);
-    });
-  });
-
-  /* =========================================================
      GitHub API integration
      ========================================================= */
   const loadGithubStats = async () => {
@@ -384,14 +306,23 @@
         form.reset();
       } else {
         // No backend configured yet — fall back to a mailto draft so it's still usable.
-        const mailto = `mailto:hello@usmantariq.dev?subject=${encodeURIComponent(data.subject || 'Portfolio contact')}&body=${encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`)}`;
+        const mailto = `mailto:usmanofficial550@gmail.com?subject=${encodeURIComponent(data.subject || 'Portfolio contact')}&body=${encodeURIComponent(`${data.message}\n\n— ${data.name} (${data.email})`)}`;
         window.location.href = mailto;
         status.textContent = 'Opening your email client — add a Formspree/EmailJS ID in js/main.js to send in-page instead.';
       }
     } catch (err) {
-      status.textContent = 'Something went wrong — please email hello@usmantariq.dev directly.';
+      status.textContent = 'Something went wrong — please email usmanofficial550@gmail.com directly.';
       console.error(err);
     }
+  });
+
+  /* =========================================================
+     Email quick-link: scroll to form and focus it
+     ========================================================= */
+  $('#emailContactLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    $('#contactForm')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => $('#cName')?.focus(), 500);
   });
 
   /* =========================================================
@@ -450,8 +381,7 @@
     { label: 'Experience', target: '#experience' },
     { label: 'GitHub Stats', target: '#github' },
     { label: 'Contact', target: '#contact' },
-    { label: 'Toggle theme', action: () => themeToggle?.click() },
-    { label: 'Download résumé', action: () => window.open('resume/Usman-Tariq-Resume.pdf', '_blank') }
+    { label: 'Toggle theme', action: () => themeToggle?.click() }
   ];
 
   const openPalette = () => {

@@ -10,7 +10,7 @@ A static, dependency-free portfolio site (HTML5 + CSS3 + vanilla JS) built to ru
 - Filterable project grid (data-driven — edit one array to add real projects)
 - Live GitHub stats + recent repos pulled from the public GitHub REST API (no backend/keys needed)
 - Testimonial slider, interactive experience timeline
-- Contact form wired for Formspree or EmailJS, with a `mailto:` fallback if neither is configured
+- Contact form wired for Formspree or EmailJS, with a `mailto:` fallback if neither is configured — email address isn't printed as visible text anywhere on the page
 - Command palette (`Ctrl/Cmd + K`), back-to-top button, custom 404 page
 - SEO basics: meta tags, Open Graph/Twitter cards, JSON-LD, `robots.txt`, `sitemap.xml`
 
@@ -22,9 +22,8 @@ A static, dependency-free portfolio site (HTML5 + CSS3 + vanilla JS) built to ru
 ├── 404.html
 ├── css/style.css
 ├── js/main.js
-├── images/            (SVG placeholders — swap for real photos/screenshots)
+├── images/            (profile photo + placeholders — swap remaining SVGs for real screenshots)
 ├── assets/
-├── resume/            (drop Usman-Tariq-Resume.pdf here)
 ├── robots.txt
 ├── sitemap.xml
 ├── favicon.ico         (SVG-based, works in modern browsers)
@@ -51,7 +50,6 @@ A static, dependency-free portfolio site (HTML5 + CSS3 + vanilla JS) built to ru
 
 - **GitHub username** — in `js/main.js`, set `CONFIG.githubUsername` to your real username so the GitHub stats section pulls live data.
 - **Projects** — edit the `PROJECTS` array near the top of `js/main.js`. Each entry needs `title`, `category` (`web` / `mobile` / `uiux` / `marketing`), `tags`, `desc`, `github`, `demo`.
-- **Résumé** — add a PDF named `Usman-Tariq-Resume.pdf` inside `/resume`.
 - **Contact form** — pick one:
   - **Formspree**: create a form at formspree.io, then set `CONFIG.formspreeEndpoint` in `js/main.js` to your form URL.
   - **EmailJS**: add the EmailJS SDK `<script>` tag to `index.html`, then fill in `CONFIG.emailjs` (`serviceId`, `templateId`, `publicKey`) in `js/main.js`.
